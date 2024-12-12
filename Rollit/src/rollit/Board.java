@@ -2,11 +2,13 @@ package rollit;
 
 public class Board {
     private Piece[][] board;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
-    public Board() {
+    public Board(int width, int height) {
         board = new Piece[width][height];
+        this.width =width;
+        this.height = height;
     }
 
     public int getWidth() {
@@ -33,6 +35,7 @@ public class Board {
         }
         return amount;
     }
+
     // renamed getFull to IsFull omda da een bool is
     public boolean IsFull() {
         return (getAmountFilled() == width*height);

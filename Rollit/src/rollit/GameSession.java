@@ -5,9 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class GameSession {
-    Board board;
-    Player[] players;
-    List<Move> moveList;
+    private final Board board;
+    private Player[] players;
+    private List<Move> moveList;
     int amountOfPlayers;
 
     public GameSession(Board board) {
@@ -40,4 +40,7 @@ public class GameSession {
     }
 
 
+    public Board getBoard() {
+        return board;
+    }
 }
