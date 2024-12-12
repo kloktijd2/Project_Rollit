@@ -1,5 +1,6 @@
 package rollit;
 
 public enum Color {
-    RED, GREEN, BLUE, YELLOW
+//empty is for error scenarios
+    RED, GREEN, BLUE, YELLOW, EMPTY
 }
