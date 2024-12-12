@@ -1,9 +1,9 @@
 package rollit;
 
 public class Player {
-    Color color;
-    int score;
-    String name;
+    private Color color;
+    private int score;
+    private final String name;
 
     public Player(String name, Color color) {
         this.name = name;

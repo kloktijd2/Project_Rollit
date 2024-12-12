@@ -1,9 +1,9 @@
 package rollit;
 
 public class Move {
-    int x;
-    int y;
-    Color color;
+    private final int x;
+    private final int y;
+    private final Color color;
 
     public int getX() {
         return x;
