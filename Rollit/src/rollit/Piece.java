@@ -11,6 +11,7 @@ public class Piece {
         return color;
     }
 
+    //change color for after a move
     public void ChangeColor(Color color) {
         this.color = color;
     }
