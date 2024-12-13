@@ -10,6 +10,7 @@ public class Player {
         this.name = name;
         this.color = color;
         this.playerNumber = playerNumber;
+//        standaardscore op 0 zetten hier? "this.score = 0;" - Y
     }
 
     public Color getColor() {
@@ -31,5 +32,20 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
+
+//   Dit toegevoegd als setter, "name = name" omdat het final is dus geen this - Y
+    public void setName(String name) {
+        name = name;
+    }
+
+//    Getter om playernummer te krijgen - Y
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+//    Voor de score omhoog te laten gaan?
+//    public void addScore(int points) {
+//    this.score += points;
+//    } - Y
 
 }

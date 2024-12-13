@@ -62,4 +62,12 @@ public class Board {
     void clear() {
         board = new Piece[width][height];
     }
+
+//    Trying om de SetPiece erin te krijgen, geen idee wat ik best nog erbij steek voor compleet
+//    Probably iets van bekijken of de zet kan ma no idea of ik het erbij moet steken - Y
+    public void SetPiece(Move move){
+        int x = move.getX();
+        int y = move.getY();
+        Color color = move.getColor();
+    }
 }
