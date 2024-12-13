@@ -28,7 +28,7 @@ public class GameSession {
             default -> color = Color.EMPTY;
         }
 
-        players[amountOfPlayers] = new Player(name, color, amountOfPlayers);
+        players[amountOfPlayers] = new Player(name, color, amountOfPlayers, board);
     }
     
     void AddMove(Move move) {

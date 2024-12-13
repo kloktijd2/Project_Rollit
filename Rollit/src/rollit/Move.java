@@ -79,7 +79,7 @@ public class Move {
     //Alle getFirst zijn om de eerste coordinaat met dezelfde kleur in die richting te vinden
     public Coordinate getFirstN() {
         boolean looping = true;
-        int iterator = 0;
+        int iterator = 1;
         Coordinate check;
         Coordinate coord = null;
         while (looping) {
@@ -98,7 +98,7 @@ public class Move {
 
     public Coordinate getFirstNE() {
         boolean looping = true;
-        int iterator = 0;
+        int iterator = 1;
         Coordinate check;
         Coordinate coord = null;
         while (looping) {
@@ -117,7 +117,7 @@ public class Move {
 
     public Coordinate getFirstE() {
         boolean looping = true;
-        int iterator = 0;
+        int iterator = 1;
         Coordinate check;
         Coordinate coord = null;
         while (looping) {
@@ -136,7 +136,7 @@ public class Move {
 
     public Coordinate getFirstSE() {
         boolean looping = true;
-        int iterator = 0;
+        int iterator = 1;
         Coordinate check;
         Coordinate coord = null;
         while (looping) {
@@ -155,7 +155,7 @@ public class Move {
 
     public Coordinate getFirstS() {
         boolean looping = true;
-        int iterator = 0;
+        int iterator = 1;
         Coordinate check;
         Coordinate coord = null;
         while (looping) {
@@ -174,7 +174,7 @@ public class Move {
 
     public Coordinate getFirstSW() {
         boolean looping = true;
-        int iterator = 0;
+        int iterator = 1;
         Coordinate check;
         Coordinate coord = null;
         while (looping) {
@@ -193,7 +193,7 @@ public class Move {
 
     public Coordinate getFirstW() {
         boolean looping = true;
-        int iterator = 0;
+        int iterator = 1;
         Coordinate check;
         Coordinate coord = null;
         while (looping) {
@@ -212,7 +212,7 @@ public class Move {
 
     public Coordinate getFirstNW() {
         boolean looping = true;
-        int iterator = 0;
+        int iterator = 1;
         Coordinate check;
         Coordinate coord = null;
         while (looping) {
