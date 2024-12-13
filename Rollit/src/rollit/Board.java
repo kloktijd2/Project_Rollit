@@ -19,10 +19,9 @@ public class Board {
         return height;
     }
 
-    public Piece getPiece(int x, int y) {
+    public Piece getPiece(Coordinate coordinate) {
         // extra code zodat mijn checklegal functie geen errors krijgt als die out of bounds pieces probeert te lezen
-        if ((x >= 0) && (x<=width) && (y<=0) && (y <= height)) {
-            return board[x][y];
+            return board[coordinate.getX()][coordinate.getY()];
         }
         else {
             return null;
@@ -73,9 +72,10 @@ public class Board {
 //    Probably iets van bekijken of de zet kan ma no idea of ik het erbij moet steken - Y
 
     // kheb nog ni gekozen of ik de logica om de andere pieces te veranderen ook hier in wil of ergens anders
-    public void SetPiece(Move move){
-        int x = move.getX();
-        int y = move.getY();
-        Color color = move.getColor();
-    }
+    //also dit doet nog niks lol
+    //public void SetPiece(Move move){
+    //    int x = move.getX();
+    //    int y = move.getY();
+    //    Color color = move.getColor();
+    //}
 }

@@ -3,6 +3,6 @@ package rollit;
 public class test {
     public static void main(String[] args) {
         Board testBoard = new Board(8,8);
-        System.out.println(testBoard.getPiece(-1,-1));
+        System.out.println(testBoard.getPiece(new Coordinate(-1,-1)));
     }
 }
