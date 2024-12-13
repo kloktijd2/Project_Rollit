@@ -42,21 +42,190 @@ public class Move {
 
             //kijkt of het piece naast een piece ligt
         } else if ( // klein nadeel aan mijn nieuwe klasse coordinaat, nu moet ik hier altijd coordinaten maken gebaseerd op vorige coordinaten
-                        (board.getPiece(coordinate.addCoordinateInt(1,0)) == null) ||
-                        (board.getPiece(coordinate.addCoordinateInt(-1,0)) == null) ||
-                        (board.getPiece(coordinate.addCoordinateInt(0,1)) == null) ||
-                        (board.getPiece(coordinate.addCoordinateInt(0,-1)) == null) ||
-                        (board.getPiece(coordinate.addCoordinateInt(1,1)) == null) ||
-                        (board.getPiece(coordinate.addCoordinateInt(1,-1)) == null) ||
-                        (board.getPiece(coordinate.addCoordinateInt(-1,1)) == null) ||
-                        (board.getPiece(coordinate.addCoordinateInt(-1,-1)) == null)
+                (board.getPiece(coordinate.addCoordinateInt(1, 0)) == null) &&
+                        (board.getPiece(coordinate.addCoordinateInt(-1, 0)) == null) &&
+                        (board.getPiece(coordinate.addCoordinateInt(0, 1)) == null) &&
+                        (board.getPiece(coordinate.addCoordinateInt(0, -1)) == null) &&
+                        (board.getPiece(coordinate.addCoordinateInt(1, 1)) == null) &&
+                        (board.getPiece(coordinate.addCoordinateInt(1, -1)) == null) &&
+                        (board.getPiece(coordinate.addCoordinateInt(-1, 1)) == null) &&
+                        (board.getPiece(coordinate.addCoordinateInt(-1, -1)) == null)
         ) {
             return false;
 
-        }
-        else {
-            //hier moet nog een check off ge een bal kunt capturen en ge dat doet -k
+        } else if (
+                (getFirstN() == null) &&
+                        (getFirstNE() == null) &&
+                        (getFirstE() == null) &&
+                        (getFirstSE() == null) &&
+                        (getFirstS() == null) &&
+                        (getFirstSW() == null) &&
+                        (getFirstW() == null) &&
+                        (getFirstN() == null)
+        ) {
+            if (board.getAmount(color) == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        } else {
             return true;
         }
+
+    }
+
+    //Alle getFirst zijn om de eerste coordinaat met dezelfde kleur in die richting te vinden
+    public Coordinate getFirstN() {
+        boolean looping = true;
+        int iterator = 0;
+        Coordinate check;
+        Coordinate coord = null;
+        while (looping) {
+            check = coordinate.addCoordinateInt(0, -iterator);
+            if (board.getPiece(check) == null) {
+                looping = false;
+            } else if (board.getPiece(check).getColor() == color) {
+                looping = false;
+                coord = check;
+            } else {
+                iterator++;
+            }
+        }
+        return coord;
+    }
+
+    public Coordinate getFirstNE() {
+        boolean looping = true;
+        int iterator = 0;
+        Coordinate check;
+        Coordinate coord = null;
+        while (looping) {
+            check = coordinate.addCoordinateInt(iterator, -iterator);
+            if (board.getPiece(check) == null) {
+                looping = false;
+            } else if (board.getPiece(check).getColor() == color) {
+                looping = false;
+                coord = check;
+            } else {
+                iterator++;
+            }
+        }
+        return coord;
+    }
+
+    public Coordinate getFirstE() {
+        boolean looping = true;
+        int iterator = 0;
+        Coordinate check;
+        Coordinate coord = null;
+        while (looping) {
+            check = coordinate.addCoordinateInt(iterator, 0);
+            if (board.getPiece(check) == null) {
+                looping = false;
+            } else if (board.getPiece(check).getColor() == color) {
+                looping = false;
+                coord = check;
+            } else {
+                iterator++;
+            }
+        }
+        return coord;
+    }
+
+    public Coordinate getFirstSE() {
+        boolean looping = true;
+        int iterator = 0;
+        Coordinate check;
+        Coordinate coord = null;
+        while (looping) {
+            check = coordinate.addCoordinateInt(iterator, iterator);
+            if (board.getPiece(check) == null) {
+                looping = false;
+            } else if (board.getPiece(check).getColor() == color) {
+                looping = false;
+                coord = check;
+            } else {
+                iterator++;
+            }
+        }
+        return coord;
+    }
+
+    public Coordinate getFirstS() {
+        boolean looping = true;
+        int iterator = 0;
+        Coordinate check;
+        Coordinate coord = null;
+        while (looping) {
+            check = coordinate.addCoordinateInt(0, iterator);
+            if (board.getPiece(check) == null) {
+                looping = false;
+            } else if (board.getPiece(check).getColor() == color) {
+                looping = false;
+                coord = check;
+            } else {
+                iterator++;
+            }
+        }
+        return coord;
+    }
+
+    public Coordinate getFirstSW() {
+        boolean looping = true;
+        int iterator = 0;
+        Coordinate check;
+        Coordinate coord = null;
+        while (looping) {
+            check = coordinate.addCoordinateInt(-iterator, iterator);
+            if (board.getPiece(check) == null) {
+                looping = false;
+            } else if (board.getPiece(check).getColor() == color) {
+                looping = false;
+                coord = check;
+            } else {
+                iterator++;
+            }
+        }
+        return coord;
+    }
+
+    public Coordinate getFirstW() {
+        boolean looping = true;
+        int iterator = 0;
+        Coordinate check;
+        Coordinate coord = null;
+        while (looping) {
+            check = coordinate.addCoordinateInt(-iterator, 0);
+            if (board.getPiece(check) == null) {
+                looping = false;
+            } else if (board.getPiece(check).getColor() == color) {
+                looping = false;
+                coord = check;
+            } else {
+                iterator++;
+            }
+        }
+        return coord;
+    }
+
+    public Coordinate getFirstNW() {
+        boolean looping = true;
+        int iterator = 0;
+        Coordinate check;
+        Coordinate coord = null;
+        while (looping) {
+            check = coordinate.addCoordinateInt(-iterator, -iterator);
+            if (board.getPiece(check) == null) {
+                looping = false;
+            } else if (board.getPiece(check).getColor() == color) {
+                looping = false;
+                coord = check;
+            } else {
+                iterator++;
+            }
+        }
+        return coord;
     }
 }
