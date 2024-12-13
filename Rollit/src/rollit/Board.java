@@ -20,7 +20,13 @@ public class Board {
     }
 
     public Piece getPiece(int x, int y) {
-        return board[x][y];
+        // extra code zodat mijn checklegal functie geen errors krijgt als die out of bounds pieces probeert te lezen
+        if ((x >= 0) && (x<=width) && (y<=0) && (y <= height)) {
+            return board[x][y];
+        }
+        else {
+            return null;
+        }
     }
 
     public int getAmountFilled(){
@@ -65,6 +71,8 @@ public class Board {
 
 //    Trying om de SetPiece erin te krijgen, geen idee wat ik best nog erbij steek voor compleet
 //    Probably iets van bekijken of de zet kan ma no idea of ik het erbij moet steken - Y
+
+    // kheb nog ni gekozen of ik de logica om de andere pieces te veranderen ook hier in wil of ergens anders
     public void SetPiece(Move move){
         int x = move.getX();
         int y = move.getY();
