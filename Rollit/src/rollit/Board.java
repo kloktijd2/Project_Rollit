@@ -21,6 +21,7 @@ public class Board {
 
     public Piece getPiece(Coordinate coordinate) {
         // extra code zodat mijn checklegal functie geen errors krijgt als die out of bounds pieces probeert te lezen
+        if ((coordinate.getX() >= 0) && (coordinate.getX()<=width) && (coordinate.getY()<=0) && (coordinate.getY() <= height)) {
             return board[coordinate.getX()][coordinate.getY()];
         }
         else {
@@ -73,9 +74,12 @@ public class Board {
 
     // kheb nog ni gekozen of ik de logica om de andere pieces te veranderen ook hier in wil of ergens anders
     //also dit doet nog niks lol
-    //public void SetPiece(Move move){
-    //    int x = move.getX();
-    //    int y = move.getY();
-    //    Color color = move.getColor();
-    //}
+    //update kga het in Player.play() doen
+    public void SetPiece(Move move){
+        Coordinate coordinate = move.getCoordinate();
+        int x = coordinate.getX();
+        int y = coordinate.getY();
+        Color color = move.getColor();
+        board[x][y] = new Piece(color);
+    }
 }
