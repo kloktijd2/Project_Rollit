@@ -1,7 +1,6 @@
 package rollit;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class GameSession {
@@ -9,12 +8,13 @@ public class GameSession {
     private Player[] players;
     private List<Move> moveList;
     int amountOfPlayers;
+    int turnNumber;
 
     public GameSession(Board board) {
         this.board = board;
-        amountOfPlayers =0;
-        moveList = new ArrayList<>() {
-        };
+        amountOfPlayers = 0;
+        moveList = new ArrayList<>();
+        turnNumber = 0;
     }
 
     public void addPlayer(String name) {
@@ -30,11 +30,11 @@ public class GameSession {
 
         players[amountOfPlayers] = new Player(name, color, amountOfPlayers, board);
     }
-    
+
     void AddMove(Move move) {
         moveList.add(move);
     }
-    
+
     public Player getPlayer(int playerID) {
         return players[playerID];
     }
@@ -43,4 +43,11 @@ public class GameSession {
     public Board getBoard() {
         return board;
     }
+
+    public void Play(Coordinate coordinate) {
+        Player CurrentPlayer = players[turnNumber % (amountOfPlayers + 1)];
+        CurrentPlayer.Play(coordinate);
+        moveList.add(new Move(coordinate, CurrentPlayer.getColor(), board));
+    }
+
 }
