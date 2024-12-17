@@ -61,7 +61,7 @@ public class Move {
                         (getFirstS() == null) &&
                         (getFirstSW() == null) &&
                         (getFirstW() == null) &&
-                        (getFirstN() == null)
+                        (getFirstNW() == null)
         ) {
             if (board.getAmount(color) == 0) {
                 return true;
