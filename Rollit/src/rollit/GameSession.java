@@ -1,6 +1,7 @@
 package rollit;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GameSession {
@@ -48,6 +49,22 @@ public class GameSession {
         Player CurrentPlayer = players[turnNumber % (amountOfPlayers + 1)];
         CurrentPlayer.Play(coordinate);
         moveList.add(new Move(coordinate, CurrentPlayer.getColor(), board));
+    }
+
+    public void undo() {
+        board.clear();
+        turnNumber = 0;
+        moveList.remove(moveList.getLast());
+        for (Move move : moveList) {
+            //kijkt voor de zekerheid of de move in de movelijst zijn kleur overeenkomt met de beurtorder zijn kleur (normaal zou da ni fout kunnen lopen)
+            if (move.getColor() == players[turnNumber % (amountOfPlayers + 1)].getColor()) {
+                Play(move.getCoordinate());
+            } else {
+                throw new IllegalArgumentException("coordinate playorder mismatch (dees zou ni mogen gebeuren ma voor de zekerheid)");
+            }
+
+
+        }
     }
 
 }
