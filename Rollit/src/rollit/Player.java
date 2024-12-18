@@ -1,17 +1,15 @@
 package rollit;
 
 public class Player {
-    private Color color;
+    private final Color color;
     private int score;
     private final String name;
-    private final int playerNumber;
     private final Board board;
 
-    public Player(String name, Color color, int playerNumber, Board board) {
+    public Player(String name, Color color, Board board) {
         this.name = name;
         this.color = color;
-        this.playerNumber = playerNumber;
-//        standaardscore op 0 zetten hier? "this.score = 0;" - Y
+        //        standaardscore op 0 zetten hier? "this.score = 0;" - Y
         this.board = board;
     }
 
@@ -28,25 +26,7 @@ public class Player {
         return name;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-//   Dit toegevoegd als setter, "name = name" omdat het final is dus geen this - Y
-    public void setName(String name) {
-        name = name;
-    }
-
-//    Getter om playernummer te krijgen - Y
-    public int getPlayerNumber() {
-        return playerNumber;
-    }
-
-//    Voor de score omhoog te laten
+    //    Voor de score omhoog te laten
 //    public void addScore(int points) {
 //    this.score += points;
 //    } - Y
@@ -60,7 +40,7 @@ public class Player {
     public void Play(Coordinate coordinate) {
         Move move = new Move(coordinate, color, board);
         if (move.checkLegal()) {
-            board.SetPiece(move);
+            board.setPiece(move);
             if (move.getFirstN() != null) {
                 Coordinate N = move.getFirstN();
                 int it = coordinate.getY() - N.getY();

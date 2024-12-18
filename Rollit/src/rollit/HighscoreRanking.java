@@ -34,7 +34,7 @@ public class HighscoreRanking {
         scoreList.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
 //         Laatste 5 Scores - Y
         if (scoreList.size() > 5) {
-            scoreList.remove(scoreList.size() - 1);
+            scoreList.removeLast();
         }
     }
 

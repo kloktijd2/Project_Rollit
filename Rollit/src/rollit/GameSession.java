@@ -1,13 +1,12 @@
 package rollit;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class GameSession {
     private final Board board;
-    private Player[] players;
-    private List<Move> moveList;
+    private final Player[] players;
+    private final List<Move> moveList;
     private int amountOfPlayers;
     private int turnNumber;
 
@@ -35,14 +34,10 @@ public class GameSession {
             case 1 -> color = Color.GREEN;
             case 2 -> color = Color.YELLOW;
             case 3 -> color = Color.BLUE;
-            default -> color = Color.EMPTY;
+            default -> throw new IllegalArgumentException("te veel spelers");
         }
-        players[amountOfPlayers] = new Player(name, color, amountOfPlayers, board);
+        players[amountOfPlayers] = new Player(name, color, board);
         amountOfPlayers++;
-    }
-
-    void AddMove(Move move) {
-        moveList.add(move);
     }
 
     public Player getPlayer(int playerID) {

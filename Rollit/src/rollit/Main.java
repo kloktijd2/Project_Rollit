@@ -1,7 +1,6 @@
 package rollit;
 
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 public class Main {
     public static void main(String[] args) {
@@ -35,12 +34,8 @@ public class Main {
             }
             boolean sessionLoop = false;
             switch (amountOfPlayers) {
-                case 0 -> {
-                    gameLoop = false;
-                }
-                case 1 -> {
-                    System.out.println(menu.showHighScores());
-                }
+                case 0 -> gameLoop = false;
+                case 1 -> System.out.println(menu.showHighScores());
 
                 case 2 -> {
                     System.out.println("wat is de naam van speler 1");

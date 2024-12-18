@@ -1,8 +1,8 @@
 package rollit;
 
 public class Coordinate {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public Coordinate(int x, int y) {
         this.x = x;
@@ -12,24 +12,13 @@ public class Coordinate {
     public int getX() {
         return x;
     }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
+    
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
     //verandert niks aan de coordinaat maakt het gwn makkelijker om andere coordinaten te maken gebasseerd op vorige coordinaten
-    public Coordinate addCoordinate(Coordinate coordinate) {
-        return new Coordinate(this.x+coordinate.getX(), this.y+coordinate.getY());
-    }
-
+    
     public Coordinate addCoordinateInt(int x, int y) {
         return new Coordinate(this.x +x, this.y + y);
     }

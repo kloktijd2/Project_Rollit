@@ -2,7 +2,7 @@ package rollit;
 
 public class Menu {
     private GameSession session;
-    private HighscoreRanking highScores;
+    private final HighscoreRanking highScores;
 
     public HighscoreRanking getHighScores() {
         return highScores;

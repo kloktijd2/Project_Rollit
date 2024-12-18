@@ -53,12 +53,7 @@ public class Move {
         } else {
 
             if (!checkCapture()) {
-                if (possibleCaptures().isEmpty()) {
-                    return true;
-                } else {
-
-                    return false;
-                }
+                return possibleCaptures().isEmpty();
             } else {
                 return true;
             }

@@ -74,7 +74,7 @@ public class Board {
     // kheb nog ni gekozen of ik de logica om de andere pieces te veranderen ook hier in wil of ergens anders
     //also dit doet nog niks lol
     //update kga het in Player.play() doen
-    public void SetPiece(Move move) {
+    public void setPiece(Move move) {
         Coordinate coordinate = move.getCoordinate();
         int x = coordinate.getX();
         int y = coordinate.getY();
@@ -90,10 +90,7 @@ public class Board {
             string.append(i).append(" ");
         }
         string.append("\n  ");
-        for (int i = 0; i < width; i++) {
-            string.append("--");
-
-        }
+        string.append("--".repeat(Math.max(0, width)));
         string.append("\n");
         for (int i = 0; i < height; i++) {
             string.append(i).append("|");
@@ -118,12 +115,12 @@ public class Board {
 
     public void init() {
         Move temp1 = new Move(new Coordinate((width/2)-1,(height/2)-1), Color.RED, this);
-        SetPiece(temp1);
+        setPiece(temp1);
         Move temp2 = new Move(new Coordinate((width/2),(height/2)-1), Color.YELLOW, this);
-        SetPiece(temp2);
+        setPiece(temp2);
         Move temp3 = new Move(new Coordinate((width/2),(height/2)), Color.GREEN, this);
-        SetPiece(temp3);
+        setPiece(temp3);
         Move temp4 = new Move(new Coordinate((width/2)-1,(height/2)), Color.BLUE, this);
-        SetPiece(temp4);
+        setPiece(temp4);
     }
 }
