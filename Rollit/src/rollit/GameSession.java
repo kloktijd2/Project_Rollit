@@ -37,7 +37,6 @@ public class GameSession {
             case 3 -> color = Color.BLUE;
             default -> color = Color.EMPTY;
         }
-        System.out.println("added player " + name + " at index " + amountOfPlayers );
         players[amountOfPlayers] = new Player(name, color, amountOfPlayers, board);
         amountOfPlayers++;
     }
@@ -69,6 +68,7 @@ public class GameSession {
 
     public void undo() {
         board.clear();
+        board.init();
         turnNumber = 0;
         moveList.remove(moveList.getLast());
         for (Move move : moveList) {

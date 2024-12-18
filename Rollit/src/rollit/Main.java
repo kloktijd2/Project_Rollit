@@ -96,54 +96,60 @@ public class Main {
                 Board board = session.getBoard();
 
 
-                System.out.println(board.toString());
+                System.out.println(board.toString(session.getCurrent()));
                 System.out.println("het is aan " + session.getCurrent().getName()+" ("+session.getCurrent().getColor().getChar()+")");
                 looping = true;
 
                 while (looping) {
-                    System.out.println("waar wil jij plaatsen (fomaat x,y)");
+                    System.out.println("waar wil jij plaatsen (fomaat x,y) of \"U\" voor undo");
+                    System.out.println("ciaan velden zijn legale moves");
                     String answer = sc.nextLine();
-                    int commas = 0;
-                    for (int i = 0; i < answer.length(); i++) {
-                        if (answer.charAt(i) == ',') commas++;
+                    if (answer.equals("U")) {
+                        session.undo();
+                        looping = false;
                     }
-                    if (commas == 1) {
-                        String[] split = answer.split(",");
-                        boolean secondLegalCheck = true;
-                        int x = 0;
-                        int y = 0;
-                        try {
-                            x = Integer.parseInt(split[0]);
-                        } catch (NumberFormatException e) {
-                            System.out.println("x is geen getal");
-                            secondLegalCheck = false;
-                        } catch (ArrayIndexOutOfBoundsException A) {
-                            System.out.println("x heeft geen waarde");
-                            secondLegalCheck=false;
+                    else {
+                        int commas = 0;
+                        for (int i = 0; i < answer.length(); i++) {
+                            if (answer.charAt(i) == ',') commas++;
                         }
+                        if (commas == 1) {
+                            String[] split = answer.split(",");
+                            boolean secondLegalCheck = true;
+                            int x = 0;
+                            int y = 0;
+                            try {
+                                x = Integer.parseInt(split[0]);
+                            } catch (NumberFormatException e) {
+                                System.out.println("x is geen getal");
+                                secondLegalCheck = false;
+                            } catch (ArrayIndexOutOfBoundsException A) {
+                                System.out.println("x heeft geen waarde");
+                                secondLegalCheck = false;
+                            }
 
-                        try {
-                            y = Integer.parseInt(split[1]);
-                        } catch (NumberFormatException e) {
-                            System.out.println("y is geen getal");
-                            secondLegalCheck = false;
-                        }
-                        catch (ArrayIndexOutOfBoundsException A) {
-                            System.out.println("y heeft geen waarde");
-                            secondLegalCheck = false;
-                        }
+                            try {
+                                y = Integer.parseInt(split[1]);
+                            } catch (NumberFormatException e) {
+                                System.out.println("y is geen getal");
+                                secondLegalCheck = false;
+                            } catch (ArrayIndexOutOfBoundsException A) {
+                                System.out.println("y heeft geen waarde");
+                                secondLegalCheck = false;
+                            }
 
-                        if (secondLegalCheck) {
-                            Coordinate coordinate = new Coordinate(x, y);
-                            Move move = new Move(coordinate, session.getCurrent().getColor(), board);
-                            if (move.checkLegal()) {
-                                session.Play(coordinate);
-                                looping = false;
-                            } else System.out.println("illigal move");
-                        }
+                            if (secondLegalCheck) {
+                                Coordinate coordinate = new Coordinate(x, y);
+                                Move move = new Move(coordinate, session.getCurrent().getColor(), board);
+                                if (move.checkLegal()) {
+                                    session.Play(coordinate);
+                                    looping = false;
+                                } else System.out.println("illigal move");
+                            }
 
 
-                    } else System.out.println("fout aantal commas");
+                        } else System.out.println("fout aantal commas");
+                    }
                 }
             }
         }

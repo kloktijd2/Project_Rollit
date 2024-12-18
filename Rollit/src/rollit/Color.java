@@ -37,18 +37,18 @@ public enum Color {
         String string;
         switch (this) {
             case GREEN -> {
-                string = "G";
+                string = "\u001B[32m"+ "G" + "\u001B[0m";
             }
             case RED -> {
-                string = "R";
+                string = "\u001B[31m"+ "R"+ "\u001B[0m";
             }
 
             case BLUE -> {
-                string = "B";
+                string = "\u001B[34m"+ "B"+"\u001B[0m";
             }
 
             case YELLOW -> {
-                string = "Y";
+                string = "\u001B[33m"+ "Y" +"\u001B[0m";
             }
 
             default -> {

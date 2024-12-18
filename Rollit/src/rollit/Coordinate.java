@@ -34,5 +34,8 @@ public class Coordinate {
         return new Coordinate(this.x +x, this.y + y);
     }
 
-
+    @Override
+    public String toString() {
+        return String.format("(%d,%d)",x,y);
+    }
 }

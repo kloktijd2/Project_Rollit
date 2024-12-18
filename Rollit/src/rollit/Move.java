@@ -1,5 +1,9 @@
 package rollit;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Move {
     private final Coordinate coordinate;
     private final Color color;
@@ -9,17 +13,8 @@ public class Move {
         return coordinate;
     }
 
-    //    Setter - Y
-    public void setCoordinate(int coordinate) {
-    }
-
-
     public Color getColor() {
         return color;
-    }
-
-    //    Setter - Y
-    public void setColor(Color color) {
     }
 
     public Move(Coordinate coordinate, Color color, Board board) {
@@ -34,12 +29,10 @@ public class Move {
     // i guess het is makkelijker om gwn te zeggen dat elke zet een board nodig heeft
     // also check legal heeft geen coordinate nodig da pakt die gwn uit de move-K
     public boolean checkLegal() {
-        if (coordinate.getX() < 0 || coordinate.getX() >= board.getWidth() || coordinate.getY() < 0 || coordinate.getY() >= board.getHeight()) {
-            System.out.println("coordinate out of bounds: " + coordinate.getX() + " " + coordinate.getY());
-            return false;
+        if (checkOutOfBounds()) {
+             return false;
             //kijkt of er al een piece is op die plek
-        } else if (board.getPiece(coordinate) != null) {
-            System.out.println("coordinate already filled: " + coordinate.getX() + " " + coordinate.getY());
+        } else if (checkFilled()) {
             return false;
 
             //kijkt of het piece naast een piece ligt
@@ -55,71 +48,102 @@ public class Move {
                         (board.getPiece(coordinate.addCoordinateInt(-1, 1)) == null) &&
                         (board.getPiece(coordinate.addCoordinateInt(-1, -1)) == null)
         ) {
-            System.out.println("no neighbours at coordinate: " + coordinate.getX() + " " + coordinate.getY());
             return false;
 
         } else {
-            boolean capture = false;
-            if (getFirstN() != null) {
-                if ((getFirstN().getY() != coordinate.getY() - 1)) {
-                    capture = true;
-                }
-            }
 
-            if (getFirstNE() != null) {
-                if ((getFirstNE().getY() != coordinate.getY() - 1)) {
-                    capture = true;
-                }
-            }
-
-            if (getFirstE() != null) {
-                if ((getFirstE().getX() != coordinate.getY() + 1)) {
-                    capture = true;
-                }
-            }
-
-            if (getFirstSE() != null) {
-                if ((getFirstSE().getY() != coordinate.getY() + 1)) {
-                    capture = true;
-                }
-            }
-
-            if (getFirstS() != null) {
-                if ((getFirstS().getY() != coordinate.getY() + 1)) {
-                    capture = true;
-                }
-            }
-
-            if (getFirstSW() != null) {
-                if ((getFirstSW().getY() != coordinate.getY() + 1)) {
-                    capture = true;
-                }
-            }
-
-            if (getFirstW() != null) {
-                if ((getFirstW().getX() != coordinate.getX() - 1)) {
-                    capture = true;
-                }
-            }
-
-            if (getFirstNW() != null) {
-                if ((getFirstNW().getX() != coordinate.getX() - 1)) {
-                    capture = true;
-                }
-            }
-
-            if (!capture) {
-                if (board.getAmount(color) == 0) {
+            if (!checkCapture()) {
+                if (possibleCaptures().isEmpty()) {
                     return true;
                 } else {
 
-                    System.out.println("can make a capture but doesnt: " + coordinate.getX() + " " + coordinate.getY());
                     return false;
                 }
             } else {
                 return true;
             }
         }
+    }
+
+    public boolean checkCapture() {
+        boolean capture = false;
+
+        if (getFirstN() != null) {
+            if ((getFirstN().getY() != coordinate.getY() - 1)) {
+                capture = true;
+            }
+        }
+
+        if (getFirstNE() != null) {
+            if ((getFirstNE().getY() != coordinate.getY() - 1)) {
+                capture = true;
+            }
+        }
+
+        if (getFirstE() != null) {
+            if ((getFirstE().getX() != coordinate.getX() + 1)) {
+                capture = true;
+            }
+        }
+
+        if (getFirstSE() != null) {
+            if ((getFirstSE().getY() != coordinate.getY() + 1)) {
+                capture = true;
+            }
+        }
+
+        if (getFirstS() != null) {
+            if ((getFirstS().getY() != coordinate.getY() + 1)) {
+                capture = true;
+            }
+        }
+
+        if (getFirstSW() != null) {
+            if ((getFirstSW().getY() != coordinate.getY() + 1)) {
+                capture = true;
+            }
+        }
+
+        if (getFirstW() != null) {
+            if ((getFirstW().getX() != coordinate.getX() - 1)) {
+                capture = true;
+            }
+        }
+
+        if (getFirstNW() != null) {
+            if ((getFirstNW().getX() != coordinate.getX() - 1)) {
+                capture = true;
+            }
+        }
+
+        return capture;
+    }
+
+    public List<Coordinate> possibleCaptures() {
+        Coordinate coord;
+        Move testmove;
+        List<Coordinate> Coords = new ArrayList<>();
+        for (int i = 0; i < board.getWidth(); i++) {
+            for (int j = 0; j < board.getHeight(); j++) {
+                coord = new Coordinate(i, j);
+                testmove = new Move(coord, color, board);
+
+                if ((!testmove.checkFilled()) && testmove.checkCapture()) {
+                    Coords.add(testmove.getCoordinate());
+                }
+
+            }
+
+        }
+        return Collections.unmodifiableList(Coords);
+    }
+
+    public boolean checkOutOfBounds() {
+        return (coordinate.getX() < 0 || coordinate.getX() >= board.getWidth() || coordinate.getY() < 0 || coordinate.getY() >= board.getHeight());
+    }
+
+    public boolean checkFilled() {
+        return (board.getPiece(coordinate) != null);
     }
 
     //Alle getFirst zijn om de eerste coordinaat met dezelfde kleur in die richting te vinden

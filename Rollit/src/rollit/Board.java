@@ -21,10 +21,9 @@ public class Board {
 
     public Piece getPiece(Coordinate coordinate) {
         // extra code zodat mijn checklegal functie geen errors krijgt als die out of bounds pieces probeert te lezen
-        if ((coordinate.getX() >= 0) && (coordinate.getX() <= width) && (coordinate.getY() >= 0) && (coordinate.getY() <= height)) {
+        if ((coordinate.getX() >= 0) && (coordinate.getX() < width) && (coordinate.getY() >= 0) && (coordinate.getY() < height)) {
             return board[coordinate.getX()][coordinate.getY()];
         } else {
-            System.out.println("tried to read out of bounds values");
             return null;
         }
     }
@@ -83,8 +82,8 @@ public class Board {
         board[x][y] = new Piece(color);
     }
 
-    @Override
-    public String toString() {
+
+    public String toString(Player current) {
         StringBuilder string = new StringBuilder();
         string.append("  ");
         for (int i = 0; i < width; i++) {
@@ -100,7 +99,12 @@ public class Board {
             string.append(i).append("|");
             for (int j = 0; j < width; j++) {
                 if (board[j][i] == null) {
-                    string.append("0 ");
+                    Move check = new Move(new Coordinate(j,i), current.getColor(), this );
+                    if (check.checkLegal()) {
+                        string.append("\u001B[36m");
+
+                    }
+                    string.append("0 ").append("\u001B[0m");
                 } else {
 
                     string.append(board[j][i].getColor().getChar()).append(" ");

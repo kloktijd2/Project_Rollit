@@ -115,7 +115,6 @@ public class Player {
             }
 
             if (move.getFirstW() != null) {
-                System.out.println("WEST");
                 Coordinate W = move.getFirstW();
                 int it =   coordinate.getX() - W.getX();
                 for (int i = 0; i < it; i++) {
