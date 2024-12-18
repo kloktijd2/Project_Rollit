@@ -83,4 +83,18 @@ public class GameSession {
         }
     }
 
+    public Player getWinner() {
+        Player winner = players[0];
+        int comparTo = players[0].getScore();
+        for (int i = 0; i < amountOfPlayers; i++) {
+            if (players[i].getScore() > comparTo) {
+                comparTo = players[i].getScore();
+                winner = players[i];
+            }
+
+        }
+
+        return winner;
+    }
+
 }

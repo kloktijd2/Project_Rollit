@@ -20,6 +20,7 @@ public class Player {
     }
 
     public int getScore() {
+        UpdateScore();
         return score;
     }
 

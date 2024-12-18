@@ -5,8 +5,8 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 public class Main {
     public static void main(String[] args) {
-        final int boardWidth = 8;
-        final int boardHeight = 8;
+        final int boardWidth = 4;
+        final int boardHeight = 4;
         //kheb heel de main herschreven
         Menu menu = new Menu();
         Scanner sc = new Scanner(System.in);
@@ -149,6 +149,15 @@ public class Main {
 
 
                         } else System.out.println("fout aantal commas");
+                    }
+                }
+                if (board.IsFull()) {
+                    sessionLoop = false;
+                System.out.println("GAME OVER "+session.getWinner().getName()+" IS GEWONNEN MET " + session.getWinner().getScore());
+                    menu.getHighScores().addScore(session.getWinner(), session.getAmountOfPlayers());
+                    for (int i = 0; i < session.getAmountOfPlayers(); i++) {
+                        Player player = session.getPlayer(i);
+                        System.out.printf("%s: %s %d \n", player.getName(), player.getColor().toString(), player.getScore());
                     }
                 }
             }

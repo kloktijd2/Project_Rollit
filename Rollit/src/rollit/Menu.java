@@ -4,6 +4,10 @@ public class Menu {
     private GameSession session;
     private HighscoreRanking highScores;
 
+    public HighscoreRanking getHighScores() {
+        return highScores;
+    }
+
     public Menu() {
         highScores = new HighscoreRanking();
     }
