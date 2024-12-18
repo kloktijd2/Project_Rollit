@@ -33,4 +33,6 @@ public class Coordinate {
     public Coordinate addCoordinateInt(int x, int y) {
         return new Coordinate(this.x +x, this.y + y);
     }
+
+
 }

@@ -35,13 +35,17 @@ public class Move {
     // also check legal heeft geen coordinate nodig da pakt die gwn uit de move-K
     public boolean checkLegal() {
         if (coordinate.getX() < 0 || coordinate.getX() >= board.getWidth() || coordinate.getY() < 0 || coordinate.getY() >= board.getHeight()) {
+            System.out.println("coordinate out of bounds: " + coordinate.getX() + " " + coordinate.getY());
             return false;
             //kijkt of er al een piece is op die plek
         } else if (board.getPiece(coordinate) != null) {
+            System.out.println("coordinate already filled: " + coordinate.getX() + " " + coordinate.getY());
             return false;
 
             //kijkt of het piece naast een piece ligt
-        } else if ( // klein nadeel aan mijn nieuwe klasse coordinaat, nu moet ik hier altijd coordinaten maken gebaseerd op vorige coordinaten
+        } else if (
+            // klein nadeel aan mijn nieuwe klasse coordinaat,
+            // nu moet ik hier altijd coordinaten maken gebaseerd op vorige coordinaten
                 (board.getPiece(coordinate.addCoordinateInt(1, 0)) == null) &&
                         (board.getPiece(coordinate.addCoordinateInt(-1, 0)) == null) &&
                         (board.getPiece(coordinate.addCoordinateInt(0, 1)) == null) &&
@@ -51,29 +55,71 @@ public class Move {
                         (board.getPiece(coordinate.addCoordinateInt(-1, 1)) == null) &&
                         (board.getPiece(coordinate.addCoordinateInt(-1, -1)) == null)
         ) {
+            System.out.println("no neighbours at coordinate: " + coordinate.getX() + " " + coordinate.getY());
             return false;
 
-        } else if (
-                (getFirstN() == null) &&
-                        (getFirstNE() == null) &&
-                        (getFirstE() == null) &&
-                        (getFirstSE() == null) &&
-                        (getFirstS() == null) &&
-                        (getFirstSW() == null) &&
-                        (getFirstW() == null) &&
-                        (getFirstNW() == null)
-        ) {
-            if (board.getAmount(color) == 0) {
+        } else {
+            boolean capture = false;
+            if (getFirstN() != null) {
+                if ((getFirstN().getY() != coordinate.getY() - 1)) {
+                    capture = true;
+                }
+            }
+
+            if (getFirstNE() != null) {
+                if ((getFirstNE().getY() != coordinate.getY() - 1)) {
+                    capture = true;
+                }
+            }
+
+            if (getFirstE() != null) {
+                if ((getFirstE().getX() != coordinate.getY() + 1)) {
+                    capture = true;
+                }
+            }
+
+            if (getFirstSE() != null) {
+                if ((getFirstSE().getY() != coordinate.getY() + 1)) {
+                    capture = true;
+                }
+            }
+
+            if (getFirstS() != null) {
+                if ((getFirstS().getY() != coordinate.getY() + 1)) {
+                    capture = true;
+                }
+            }
+
+            if (getFirstSW() != null) {
+                if ((getFirstSW().getY() != coordinate.getY() + 1)) {
+                    capture = true;
+                }
+            }
+
+            if (getFirstW() != null) {
+                if ((getFirstW().getX() != coordinate.getX() - 1)) {
+                    capture = true;
+                }
+            }
+
+            if (getFirstNW() != null) {
+                if ((getFirstNW().getX() != coordinate.getX() - 1)) {
+                    capture = true;
+                }
+            }
+
+            if (!capture) {
+                if (board.getAmount(color) == 0) {
+                    return true;
+                } else {
+
+                    System.out.println("can make a capture but doesnt: " + coordinate.getX() + " " + coordinate.getY());
+                    return false;
+                }
+            } else {
                 return true;
             }
-            else {
-                return false;
-            }
-
-        } else {
-            return true;
         }
-
     }
 
     //Alle getFirst zijn om de eerste coordinaat met dezelfde kleur in die richting te vinden
@@ -131,6 +177,7 @@ public class Move {
                 iterator++;
             }
         }
+
         return coord;
     }
 

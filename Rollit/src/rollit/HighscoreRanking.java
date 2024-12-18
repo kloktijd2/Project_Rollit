@@ -6,9 +6,9 @@ import java.util.List;
 
 public class HighscoreRanking {
 //    Lists voor de verschillende aantal spelers met scores - Y
-    private List<Player> twoPlayerScores;
-    private List<Player> threePlayerScores;
-    private List<Player> fourPlayerScores;
+    private final List<Player> twoPlayerScores;
+    private final List<Player> threePlayerScores;
+    private final List<Player> fourPlayerScores;
 
 //    Constructor - Y
     public HighscoreRanking() {
@@ -46,5 +46,25 @@ public class HighscoreRanking {
             case 4 -> Collections.unmodifiableList(fourPlayerScores);
             default -> throw new IllegalArgumentException("Invalid number of players: " + numPlayers);
         };
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("Top scores 2 player games:\n");
+        for (int i = 0; i < getTopScores(2).size(); i++) {
+            string.append((i + 1)).append(". ").append(getTopScores(2).get(i).getName()).append(": ").append(getTopScores(2).get(i).getScore()).append("\n");
+        }
+
+        string.append("\nTop scores 3 player games: \n");
+        for (int i = 0; i < getTopScores(3).size(); i++) {
+            string.append((i + 1)).append(". ").append(getTopScores(3).get(i).getName()).append(": ").append(getTopScores(3).get(i).getScore());
+        }
+
+        string.append("\nTop scores 4 player games: \n");
+        for (int i = 0; i < getTopScores(3).size(); i++) {
+            string.append((i + 1)).append(". ").append(getTopScores(4).get(i).getName()).append(": ").append(getTopScores(4).get(i).getScore());
+        }
+        return string.toString();
     }
 }

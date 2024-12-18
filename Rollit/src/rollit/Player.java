@@ -115,6 +115,7 @@ public class Player {
             }
 
             if (move.getFirstW() != null) {
+                System.out.println("WEST");
                 Coordinate W = move.getFirstW();
                 int it =   coordinate.getX() - W.getX();
                 for (int i = 0; i < it; i++) {
@@ -127,7 +128,7 @@ public class Player {
                 Coordinate NW = move.getFirstNW();
                 int it =   coordinate.getX() - NW.getX();
                 for (int i = 0; i < it; i++) {
-                    board.getPiece(coordinate.addCoordinateInt(-i,i)).ChangeColor(color);
+                    board.getPiece(coordinate.addCoordinateInt(-i,-i)).ChangeColor(color);
 
                 }
             }

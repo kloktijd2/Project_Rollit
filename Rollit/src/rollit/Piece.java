@@ -14,5 +14,6 @@ public class Piece {
     //change color for after a move
     public void ChangeColor(Color color) {
         this.color = color;
+        System.out.println("color changed");
     }
 }

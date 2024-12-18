@@ -8,14 +8,23 @@ public class GameSession {
     private final Board board;
     private Player[] players;
     private List<Move> moveList;
-    int amountOfPlayers;
-    int turnNumber;
+    private int amountOfPlayers;
+    private int turnNumber;
+
+    public int getAmountOfPlayers() {
+        return amountOfPlayers;
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
+    }
 
     public GameSession(Board board) {
         this.board = board;
         amountOfPlayers = 0;
         moveList = new ArrayList<>();
         turnNumber = 0;
+        this.players = new Player[4];
     }
 
     public void addPlayer(String name) {
@@ -28,8 +37,9 @@ public class GameSession {
             case 3 -> color = Color.BLUE;
             default -> color = Color.EMPTY;
         }
-
+        System.out.println("added player " + name + " at index " + amountOfPlayers );
         players[amountOfPlayers] = new Player(name, color, amountOfPlayers, board);
+        amountOfPlayers++;
     }
 
     void AddMove(Move move) {
@@ -46,10 +56,16 @@ public class GameSession {
     }
 
     public void Play(Coordinate coordinate) {
-        Player CurrentPlayer = players[turnNumber % (amountOfPlayers + 1)];
+        Player CurrentPlayer = getCurrent();
         CurrentPlayer.Play(coordinate);
         moveList.add(new Move(coordinate, CurrentPlayer.getColor(), board));
+        turnNumber++;
     }
+
+    public Player getCurrent() {
+        return players[turnNumber % (amountOfPlayers )];
+    }
+
 
     public void undo() {
         board.clear();
@@ -57,7 +73,7 @@ public class GameSession {
         moveList.remove(moveList.getLast());
         for (Move move : moveList) {
             //kijkt voor de zekerheid of de move in de movelijst zijn kleur overeenkomt met de beurtorder zijn kleur (normaal zou da ni fout kunnen lopen)
-            if (move.getColor() == players[turnNumber % (amountOfPlayers + 1)].getColor()) {
+            if (move.getColor() == getCurrent().getColor()) {
                 Play(move.getCoordinate());
             } else {
                 throw new IllegalArgumentException("coordinate playorder mismatch (dees zou ni mogen gebeuren ma voor de zekerheid)");

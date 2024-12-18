@@ -7,7 +7,7 @@ public class Board {
 
     public Board(int width, int height) {
         board = new Piece[width][height];
-        this.width =width;
+        this.width = width;
         this.height = height;
     }
 
@@ -21,15 +21,15 @@ public class Board {
 
     public Piece getPiece(Coordinate coordinate) {
         // extra code zodat mijn checklegal functie geen errors krijgt als die out of bounds pieces probeert te lezen
-        if ((coordinate.getX() >= 0) && (coordinate.getX()<=width) && (coordinate.getY()<=0) && (coordinate.getY() <= height)) {
+        if ((coordinate.getX() >= 0) && (coordinate.getX() <= width) && (coordinate.getY() >= 0) && (coordinate.getY() <= height)) {
             return board[coordinate.getX()][coordinate.getY()];
-        }
-        else {
+        } else {
+            System.out.println("tried to read out of bounds values");
             return null;
         }
     }
 
-    public int getAmountFilled(){
+    public int getAmountFilled() {
         int amount = 0;
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -44,9 +44,9 @@ public class Board {
 
     // renamed getFull to IsFull omda da een bool is
     public boolean IsFull() {
-        return (getAmountFilled() == width*height);
+        return (getAmountFilled() == width * height);
     }
-    
+
     public int getAmount(Color color) {
         int amount = 0;
         for (int i = 0; i < width; i++) {
@@ -58,9 +58,9 @@ public class Board {
                         amount++;
                     }
                 }
-                
+
             }
-            
+
         }
         return amount;
     }
@@ -75,11 +75,51 @@ public class Board {
     // kheb nog ni gekozen of ik de logica om de andere pieces te veranderen ook hier in wil of ergens anders
     //also dit doet nog niks lol
     //update kga het in Player.play() doen
-    public void SetPiece(Move move){
+    public void SetPiece(Move move) {
         Coordinate coordinate = move.getCoordinate();
         int x = coordinate.getX();
         int y = coordinate.getY();
         Color color = move.getColor();
         board[x][y] = new Piece(color);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("  ");
+        for (int i = 0; i < width; i++) {
+            string.append(i).append(" ");
+        }
+        string.append("\n  ");
+        for (int i = 0; i < width; i++) {
+            string.append("--");
+
+        }
+        string.append("\n");
+        for (int i = 0; i < height; i++) {
+            string.append(i).append("|");
+            for (int j = 0; j < width; j++) {
+                if (board[j][i] == null) {
+                    string.append("0 ");
+                } else {
+
+                    string.append(board[j][i].getColor().getChar()).append(" ");
+                }
+            }
+            string.append("\n");
+
+        }
+        return string.toString();
+    }
+
+    public void init() {
+        Move temp1 = new Move(new Coordinate((width/2)-1,(height/2)-1), Color.RED, this);
+        SetPiece(temp1);
+        Move temp2 = new Move(new Coordinate((width/2),(height/2)-1), Color.YELLOW, this);
+        SetPiece(temp2);
+        Move temp3 = new Move(new Coordinate((width/2),(height/2)), Color.GREEN, this);
+        SetPiece(temp3);
+        Move temp4 = new Move(new Coordinate((width/2)-1,(height/2)), Color.BLUE, this);
+        SetPiece(temp4);
     }
 }
