@@ -85,9 +85,9 @@ public class Board {
 
     public String toString(Player current) {
         StringBuilder string = new StringBuilder();
-        string.append("  ");
+        string.append("   ");
         for (int i = 0; i < width; i++) {
-            string.append(i).append(" ");
+            string.append(String.format("%d",i)).append(" ");
         }
         string.append("\n  ");
         string.append("--".repeat(Math.max(0, width)));
