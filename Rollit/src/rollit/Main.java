@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        final int boardWidth = 4;
-        final int boardHeight = 4;
+        final int BOARDWIDTH = 8;
+        final int BOARDHEIGHT = 8;
         //kheb heel de main herschreven
         Menu menu = new Menu();
         Scanner sc = new Scanner(System.in);
@@ -42,7 +42,7 @@ public class Main {
                     String name1 = sc.nextLine();
                     System.out.println("wat is de naam van speler 2");
                     String name2 = sc.nextLine();
-                    menu.start2player(boardWidth, boardHeight, name1, name2);
+                    menu.start2player(BOARDWIDTH, BOARDHEIGHT, name1, name2);
                     System.out.println(name1 + " speelt met " + menu.getSession().getPlayer(0).getColor().toString() + "(" + menu.getSession().getPlayer(0).getColor().getChar() + ")");
                     System.out.println(name2 + " speelt met " + menu.getSession().getPlayer(1).getColor().toString() + "(" + menu.getSession().getPlayer(1).getColor().getChar() + ")");
                     sessionLoop = true;
@@ -55,7 +55,7 @@ public class Main {
                     String name2 = sc.nextLine();
                     System.out.println("wat is de naam van speler 3");
                     String name3 = sc.nextLine();
-                    menu.start3player(boardWidth, boardHeight, name1, name2, name3);
+                    menu.start3player(BOARDWIDTH, BOARDHEIGHT, name1, name2, name3);
                     System.out.println(name1 + " speelt met " + menu.getSession().getPlayer(0).getColor().toString() + "(" + menu.getSession().getPlayer(0).getColor().getChar() + ")");
                     System.out.println(name2 + " speelt met " + menu.getSession().getPlayer(1).getColor().toString() + "(" + menu.getSession().getPlayer(1).getColor().getChar() + ")");
                     System.out.println(name3 + " speelt met " + menu.getSession().getPlayer(2).getColor().toString() + "(" + menu.getSession().getPlayer(2).getColor().getChar() + ")");
@@ -72,7 +72,7 @@ public class Main {
                     String name3 = sc.nextLine();
                     System.out.println("wat is de naam van speler 4");
                     String name4 = sc.nextLine();
-                    menu.start4player(boardWidth, boardHeight, name1, name2, name3, name4);
+                    menu.start4player(BOARDWIDTH, BOARDHEIGHT, name1, name2, name3, name4);
                     System.out.println(name1 + " speelt met " + menu.getSession().getPlayer(0).getColor().toString() + "(" + menu.getSession().getPlayer(0).getColor().getChar() + ")");
                     System.out.println(name2 + " speelt met " + menu.getSession().getPlayer(1).getColor().toString() + "(" + menu.getSession().getPlayer(1).getColor().getChar() + ")");
                     System.out.println(name3 + " speelt met " + menu.getSession().getPlayer(2).getColor().toString() + "(" + menu.getSession().getPlayer(2).getColor().getChar() + ")");

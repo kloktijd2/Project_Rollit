@@ -93,7 +93,7 @@ public class Board {
         string.append("--".repeat(Math.max(0, width)));
         string.append("\n");
         for (int i = 0; i < height; i++) {
-            string.append(i).append("|");
+            string.append(String.format("%2d",i)).append("|");
             for (int j = 0; j < width; j++) {
                 if (board[j][i] == null) {
                     Move check = new Move(new Coordinate(j,i), current.getColor(), this );
